@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+   <style>
+       *{
+        margin: 10px;
+        color: black;
+        background: rgb(79, 79, 123);
+       }
+        .editor{
+            display: flex;
+        }
+       .code{
+         width: 500px;
+         height: 210px;
+       }
+       .output{
+        display: flex;
+        flex-direction: column;
+       }
+       .output iframe{
+        height: 180px;
+       }
+       
+
+
+       
+      
+
+   </style>
+<body>
+    
+    <div class="editor">
+         HTML
+        <textarea name="" id="html" class="code" >HTML</textarea>
+        CSS
+        <textarea name="" id="css" class="code" >CSS</textarea>
+        JavaScript
+        <textarea name="" id="js" class="code" >JS</textarea>
+       
+    </div>
+    <div class="output">
+        OUTPUT
+        <iframe src="" id="output"></iframe>
+       
+        </div>
+   <script>
+    function run(){
+        let htmlcode = document.querySelector(".editor #html").value;
+        let csscode = "<style>"+document.querySelector(".editor #css").value+"</style>"
+        let jscode = document.querySelector(".editor #js").value;
+        let output = document.querySelector(".output #output");
+        // console.log(htmlcode,csscode,jscode,output)
+
+        output.contentDocument.body.innerHTML = htmlcode+csscode;
+        output.contentWindow.eval(jscode);
+    }
+     
+    document.querySelector(".editor #html").addEventListener("keyup",run)
+    document.querySelector(".editor #css").addEventListener("keyup",run)
+    document.querySelector(".editor #js").addEventListener("keyup",run)
+    
+    
+
+   </script>
+
+       
+
+</body>
+</html>
